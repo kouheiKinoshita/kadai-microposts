@@ -27,7 +27,7 @@ before_action :correct_user, only: [:destroy]
   end
   
   def correct_user
-    @micropost=current_user.microposts.find_by(id: params[:id])
+    @micropost = current_user.microposts.find_by(id: params[:id])
     unless @micropost #nilかfalseの時に実行:
       redirect_to root_url 
     end
