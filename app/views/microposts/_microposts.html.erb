@@ -9,12 +9,17 @@
           <%= link_to micropost.user.name, user_path(micropost.user) %> <span class="text-muted">posted at <%= micropost.created_at %></span>
         </div>
         <div>
-          <p><%= micropost.content %></p>
+          <p><%= micropost.content %></p> 
         </div>
         <div>
           <% if current_user == micropost.user %>
             <%= link_to "Delete", micropost, method: :delete, data: {confirm: "You sure?"}, class: "btn btn-danger btn-xs" %>
           <% end %>
+          <div class="col-xs-2 offset-10">
+          <%#= render 'ファイルパス', 呼び出すテンプレートで使いたい変数名: 変数に代入したい値 %>
+          <%= render 'favorites/favorite_button', micropost: micropost %>
+          <!--ここにお気に入りボタン-->
+          </div>
         </div>
       </div>
     </li>

@@ -1,0 +1,28 @@
+<ul class="media-list">
+  <% @favorites.each do |favorite| %>
+    <li class="media">
+      <div class="media-left">
+        <img class="media-object img-rounded" src="<%= gravatar_url(favorite.user, option = { size: 50 })%>" alt="">
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to favorite.user.name, user_path(favorite.user) %> <span class="text-muted">posted at <%= favorite.created_at %></span>
+        </div>
+        <div>
+          <p><%= favorite.content %></p> 
+        </div>
+        <div>
+          <% if current_user == favorite.user %>
+            <%= link_to "Delete", favorite, method: :delete, data: {confirm: "You sure?"}, class: "btn btn-danger btn-xs" %>
+          <% end %>
+          <div class="col-xs-2 offset-10">
+          <%#= render 'ファイルパス', 呼び出すテンプレートで使いたい変数名: 変数に代入したい値 %>
+          <%= render 'favorites/favorite_button', micropost: favorite %> <!-- favorite_buttonではmicropostを変数に使用、こっちではfavorite-->
+          <!--ここにお気に入りボタン-->
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate @favorites %>
+</ul>
